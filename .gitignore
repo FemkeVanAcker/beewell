@@ -1,0 +1,28 @@
+# Secrets: never commit. Copy .env.example instead.
+.env
+
+# NiceGUI user storage (per-browser data)
+.nicegui/
+
+# Python cache and build files
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+
+# Test and tool caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

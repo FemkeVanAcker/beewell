@@ -1,0 +1,31 @@
+[project]
+name = "beewell"
+version = "0.1.0"
+description = "A calm, modular wellbeing web app for neurodivergent adults."
+readme = "README.md"
+authors = [
+    { name = "FemkeVanAcker", email = "femke.vanacker127@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.20.1",
+    "argon2-cffi>=25.1.0",
+    "loguru>=0.8.0",
+    "nicegui>=4.0.0",
+    "psycopg[binary]>=3.3.9",
+    "pydantic-settings>=2.16.3",
+    "pydantic[email]>=2.14.4",
+    "sqlalchemy>=2.1.9",
+]
+
+[project.scripts]
+beewell = "beewell:main"
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
