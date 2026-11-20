@@ -1,2 +1,1 @@
-def main() -> None:
-    print("Hello from beewell!")
+"""BeeWell: a calm, modular wellbeing web app for neurodivergent adults."""
