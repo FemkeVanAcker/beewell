@@ -24,20 +24,23 @@ class InterceptHandler(logging.Handler):
 
         logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
 
-    def setup_logging(level: str = "INFO", debug: bool = False) -> None:
-        """Configure Loguru and send all library logs through it.
+def setup_logging(level: str = "INFO", debug: bool = False) -> None:
+    """Configure Loguru and send all library logs through it.
 
-        Parameters
-        ----------
-        level : str, optional
-            Lowest level to show, e.g. ``"DEBUG"`` or ``"INFO"``.
-        debug : bool, optional
-            Show variable values in tracebacks. Only use this locally: it can
-            expose passwords or health data.
-        """
-        logger.remove()
-        logger.add(sys.stderr, level=level, backtrace=debug, diagnose=debug)
+    Parameters
+    ----------
+    level : str, optional
+        Lowest level to show, e.g. ``"DEBUG"`` or ``"INFO"``.
+    debug : bool, optional
+        Show variable values in tracebacks. Only use this locally: it can
+        expose passwords or health data.
+    """
+    logger.remove()
+    logger.add(sys.stderr, level=level, backtrace=debug, diagnose=debug)
 
-        logging.basicConfig(handlers=[InterceptHandler()], level=0, force=True)
-        logging.getLogger("sqlalchemy.engine").setLevel(logging.WARNING)
-        
+    logging.basicConfig(handlers=[InterceptHandler()], level=0, force=True)
+    logging.getLogger("sqlalchemy.engine").setLevel(logging.WARNING)
+
+    # very chatty at DEBUG level, not useful for BeeWell
+    for name in ("watchfiles", "asyncio"):
+        logging.getLogger(name).setLevel(logging.WARNING)
